@@ -28,8 +28,8 @@ export const requestConfig: RequestConfig = {
 
   withCredentials: true,
 
-  baseURL: 
-  'http://localhost:7529' ,
+  baseURL: process.env.NODE_ENV === 'development'?
+  'http://localhost:7529' :'http://120.53.106.28:7529' ,
   
   requestInterceptors: [
     (config: RequestOptions) => {
@@ -45,7 +45,7 @@ export const requestConfig: RequestConfig = {
   ],
 
 
-  
+
 // 响应拦截器
 
 responseInterceptors: [

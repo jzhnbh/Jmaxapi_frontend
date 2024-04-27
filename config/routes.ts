@@ -30,7 +30,7 @@ export default [
         path: '/admin/interfaceinfoanalysis',
         component: './Admin/InterfaceInfoAnnlysis',
       },
-    ],
+    ],  
   },
   { path: '/', redirect: '/User/Login' },
   // { path: '/', redirect: '/welcome' },
