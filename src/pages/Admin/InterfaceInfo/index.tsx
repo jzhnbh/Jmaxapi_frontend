@@ -1,8 +1,8 @@
 import { PlusOutlined } from '@ant-design/icons';
-import type { ActionType, ProColumns, ProDescriptionsItemProps } from '@ant-design/pro-components';
-import { PageContainer, ProDescriptions, ProTable } from '@ant-design/pro-components';
+import type { ActionType, ProColumns, } from '@ant-design/pro-components';
+import { PageContainer, ProTable } from '@ant-design/pro-components';
 import '@umijs/max';
-import { Button, Drawer, Tooltip, message } from 'antd';
+import { Button,  Tooltip, message } from 'antd';
 import React, { useRef, useState } from 'react';
 import UpdateForm from './components/UpdateModal';
 
@@ -22,15 +22,15 @@ const TableList: React.FC = () => {
    * @zh-CN 新建窗口的弹窗
    *  */
   const [CreateModalOpen, handleCreateModalOpen] = useState<boolean>(false);
+  const [updateModalOpen, handleUpdateModalOpen] = useState<boolean>(false);
   /**
    * @en-US The pop-up window of the distribution update window
    * @zh-CN 分布更新窗口的弹窗
    * */
-  const [updateModalOpen, handleUpdateModalOpen] = useState<boolean>(false);
-  const [showDetail, setShowDetail] = useState<boolean>(false);
+ 
   const actionRef = useRef<ActionType>();
   const [currentRow, setCurrentRow] = useState<API.InterfaceInfo>();
-  const [selectedRowsState, setSelectedRows] = useState<API.InterfaceInfo[]>([]);
+  // const [selectedRowsState, setSelectedRows] = useState<API.InterfaceInfo[]>([]);
 
   /**
    *  Delete node
@@ -151,6 +151,8 @@ const TableList: React.FC = () => {
     }
   };
 
+
+  // 数据
   const columns: ProColumns<API.InterfaceInfo>[] = [
     {
       title: 'id',
@@ -330,6 +332,7 @@ const TableList: React.FC = () => {
       ],
     },
   ];
+
   return (
     <PageContainer>
       <ProTable<API.InterfaceInfo, API.PageParams>
@@ -400,30 +403,6 @@ const TableList: React.FC = () => {
         }}
         visible={updateModalOpen}
       />
-
-      <Drawer
-        width={600}
-        open={showDetail}
-        onClose={() => {
-          setCurrentRow(undefined);
-          setShowDetail(false);
-        }}
-        closable={false}
-      >
-        {currentRow?.name && (
-          <ProDescriptions<API.InterfaceInfo>
-            column={2}
-            title={currentRow?.name}
-            request={async () => ({
-              data: currentRow || {},
-            })}
-            params={{
-              id: currentRow?.name,
-            }}
-            columns={columns as ProDescriptionsItemProps<API.InterfaceInfo>[]}
-          />
-        )}
-      </Drawer>
     </PageContainer>
   );
 };

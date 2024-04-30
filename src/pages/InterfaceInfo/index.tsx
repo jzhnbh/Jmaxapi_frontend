@@ -63,9 +63,8 @@ const ListOpenApiInfo: React.FC = () => {
   const [requestParams, setRequestParams] = useState<string>();
   const [responseParams, setResponseParams] = useState<string>();
 
-  /**
-   * 返回状态码
-   */
+
+// 返回状态码
   const [returnCode, setReturnCode] = useState<any>(returnExample);
 
   // 解析出的地址
@@ -77,10 +76,10 @@ const ListOpenApiInfo: React.FC = () => {
     }[]
   >([]);
 
-  /**
-   * 转换响应参数
-   * @param params
-   */
+
+
+// 转换响应参数
+
   const convertResponseParams = (params?: [API.RequestParamsField]) => {
     if (!params || params.length <= 0) {
       return returnExample;
@@ -123,15 +122,6 @@ const ListOpenApiInfo: React.FC = () => {
     return JSON.stringify(mergedResult, null, 2);
   };
 
-  // 请求地址框方法
-  const selectBefore = (
-    <Select defaultValue={data?.method}>
-      <Option value={interfaceMethodList.GET.text}>GET</Option>
-      <Option value={interfaceMethodList.POST.text}>POST</Option>
-      <Option value={interfaceMethodList.PUT.text}>PUT</Option>
-      <Option value={interfaceMethodList.DELETE.text}>DELETE</Option>
-    </Select>
-  );
 
   // 在toolsProEditTableData 中新增一行
   const handleProEditTableAdd = () => {
@@ -142,6 +132,8 @@ const ListOpenApiInfo: React.FC = () => {
     };
     setToolsProEditTableData((prevData) => [...prevData, newData]);
   };
+
+
 
   // 双击请求地址输入框
   const toolsInputDoubleClick = () => {
@@ -160,6 +152,8 @@ const ListOpenApiInfo: React.FC = () => {
     }
   };
 
+
+
   // 请求地址烂输入事件
   const toolsInputChange = (even) => {
     setToolsInputValue(even.target.value);
@@ -169,9 +163,8 @@ const ListOpenApiInfo: React.FC = () => {
     setRequestExampleActiveTabKey(key);
   };
 
-  /**
-   * 在线调试工具默认显示的输入框
-   */
+// 在线调试工具默认显示的输入框
+
   const toolsInputPlaceholder = () => {
     let resPlaceholder = '';
     // 健壮性校验
@@ -406,10 +399,8 @@ const ListOpenApiInfo: React.FC = () => {
     ),
   };
 
-  /**
-   * 修改tab状态
-   * @param key
-   */
+  //  修改tab状态
+
   const responseExampleTabChange = (key: string) => {
     if (key === 'tools') {
       toolsInputPlaceholder();
